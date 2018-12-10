@@ -17,8 +17,8 @@ class Customer
         sql = "INSERT INTO customers
         (name, funds) VALUES ($1, $2) RETURNING ID"
         values = [@name, @funds]
-        star = SqlRunner.run(sql, values).first
-        @id = star['id'].to_i
+        customer_info = SqlRunner.run(sql, values).first
+        @id = customer_info['id'].to_i
     end
 
     def self.delete_all()
@@ -44,17 +44,19 @@ class Customer
     SqlRunner.run(sql, values)
     end
 
+    def films()
+        sql =  "SELECT films.* FROM
+        films INNER JOIN tickets ON
+        films.id = tickets.film_id
+        WHERE tickets.customer_id = $1"
+        values = [@id]
+        films = SqlRunner.run(sql, values)
+        return films.map{ |film| Film.new(film)}
+    end
 
-    #
-    # def films()
-    #   sql = "SELECT films.* FROM
-    #   films INNER JOIN tickets ON
-    #   films.id = tickets.film_id
-    #   WHERE tickets.customer_id = $1"
-    #   values = [@id]
-    #   stars = SqlRunner.run(sql, values)
-    #   return stars.map{ |film| Film.new(film)}
-    # end
+    def ticket_number()
+      return films().count
+    end
 
 
 end

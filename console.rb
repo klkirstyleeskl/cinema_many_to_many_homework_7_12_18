@@ -31,9 +31,9 @@ film_4.save
 ticket_1 = Ticket.new({'customer_id' => customer_1.id, 'film_id' => film_3.id})
 ticket_2 = Ticket.new({'customer_id' => customer_2.id, 'film_id' => film_1.id})
 ticket_3 = Ticket.new({'customer_id' => customer_1.id, 'film_id' => film_2.id})
-ticket_4 = Ticket.new({'customer_id' => customer_2.id, 'film_id' => film_2.id})
+ticket_4 = Ticket.new({'customer_id' => customer_3.id, 'film_id' => film_2.id})
 ticket_5 = Ticket.new({'customer_id' => customer_1.id, 'film_id' => film_4.id})
-ticket_6 = Ticket.new({'customer_id' => customer_2.id, 'film_id' => film_1.id})
+ticket_6 = Ticket.new({'customer_id' => customer_3.id, 'film_id' => film_1.id})
 
 ticket_1.save
 ticket_2.save
